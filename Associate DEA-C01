@@ -499,7 +499,6 @@ A) Use Amazon EMR and Apache Ranger.
 B) Use a Hive metastore on an EMR cluster. 
 C) Use the AWS Glue Data Catalog.
 D) Use a metastore on an Amazon RDS for MySQL DB instance.
-
 Ans: C
 
 59. A company needs to build a data lake in AWS. The company must provide row- level data access and column-level data access to specific teams. The teams will access the data by using Amazon Athena, Amazon Redshift Spectrum, and Apache Hive from Amazon EMR.
@@ -510,7 +509,7 @@ C) Use Amazon Redshift for data lake storage. Use Redshift security policies to 
 D) Use Amazon S3 for data lake storage. Use AWS Lake Formation to restrict data access by rows and columns. Provide data access through AWS Lake Formation.
 Ans: D
 
-60.An airline company is collecting metrics about flight activities for analytics. The company is conducting a proof of concept (POC) test to show how analytics can provide insights that the company can use to increase on-time departures.
+60. An airline company is collecting metrics about flight activities for analytics. The company is conducting a proof of concept (POC) test to show how analytics can provide insights that the company can use to increase on-time departures.
 The POC test uses objects in Amazon S3 that contain the metrics in .csv format. The POC test uses Amazon Athena to query the data. The data is partitioned in the S3 bucket by date.
 As the amount of data increases, the company wants to optimize the storage solution to improve query performance.
 Which combination of solutions will meet these requirements? (Choose two.)
@@ -520,6 +519,100 @@ C) Use an S3 bucket that is in the same AWS Region where the company runs Athena
 D) Preprocess the .csv data to JSON format by fetching only the document keys that the query requires.
 E) Preprocess the .csv data to Apache Parquet format by fetching only the data blocks that are needed for predicates.
 Ans: C, E
+
+61. A company uses Amazon RDS for MySQL as the database for a critical application. The database workload is mostly writes, with a small number of reads.
+A data engineer notices that the CPU utilization of the DB instance is very high. The high CPU utilization is slowing down the application. The data engineer must reduce the CPU utilization of the DB Instance.
+Which actions should the data engineer take to meet this requirement? (Choose two.)
+A) Use the Performance Insights feature of Amazon RDS to identify queries that have high CPU utilization. Optimize the problematic queries.
+B) Modify the database schema to include additional tables and indexes.
+C) Reboot the RDS DB instance once each week.
+D) Upgrade to a larger instance size.
+E) Implement caching to reduce the database query load.
+Ans: A, D
+
+62. A company has used an Amazon Redshift table that is named Orders for 6 months. The company performs weekly updates and deletes on the table. The table has an interleaved sort key on a column that contains AWS Regions.
+The company wants to reclaim disk space so that the company will not run out of storage space. The company also wants to analyze the sort key column. Which Amazon Redshift command will meet these requirements?
+A) VACUUM FULL Orders 
+B) VACUUM DELETE ONLY Orders 
+C) VACUUM REINDEX Orders
+D) VACUUM SORT ONLY Orders
+Ans: A
+
+63. A manufacturing company wants to collect data from sensors. A data engineer needs to implement a solution that ingests sensor data in near real time.
+The solution must store the data to a persistent data store. The solution must store the data in nested JSON format. The company must have the ability to query from the data store with a latency of less than 10 milliseconds.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Use a self-hosted Apache Kafka cluster to capture the sensor data. Store the data in Amazon S3 for querying.
+B) Use AWS Lambda to process the sensor data. Store the data in Amazon S3 for querying.
+C) Use Amazon Kinesis Data Streams to capture the sensor data. Store the data in Amazon DynamoDB for querying.
+D) Use Amazon Simple Queue Service (Amazon SQS) to buffer incoming sensor data. Use AWSGlue to store the data in Amazon RDS for querying. 
+Ans: C
+
+64. A company stores data in a data lake that is in Amazon S3. Some data that the company stores in the data lake contains personally identifiable information (PII). Multiple user groups need to access the raw data. The company must ensure that user groups can access only the PII that they require.
+Which solution will meet these requirements with the LEAST effort?
+A) Use Amazon Athena to query the data. Set up AWS Lake Formation and create data filters to establish levels of access for the company's IAM roles. Assign each user to the IAM role that matches the user's PII access requirements.
+B) Use Amazon QuickSight to access the data. Use column-level security features inQuickSight to limit the PII that users can retrieve from Amazon S3 by using Amazon Athena. Define QuickSight access levels based on the PII access requirements of the users.
+C) Build a custom query builder UI that will run Athena queries in the background to access the data. Create user groups in Amazon Cognito. Assign access levels to the user groups based on the PII access requirements of the users.
+D) Create IAM roles that have different levels of granular access. Assign the IAM roles to IAM user groups. Use an identity-based policy to assign access levels to user groups at the column level.
+Ans: A
+
+65. A data engineer must build an extract, transform, and load (ETL) pipeline to process and load data from 10 source systems into 10 tables that are in an Amazon Redshift database. All the source systems generate .csv, JSON, or Apache Parquet files every 15 minutes. The source systems all deliver files into one Amazon S3 bucket. The file sizes range from 10 MB to 20 GB. The ETL pipeline must function correctly despite changes to the data schema.
+Which data pipeline solutions will meet these requirements? (Choose two.)
+A) Use an Amazon EventBridge rule to run an AWS Glue job every 15 minutes. Configure the AWS Glue job to process and load the data into the Amazon Redshift tables. 
+B) Use an Amazon EventBridge rule to invoke an AWS Glue workflow job every 15 minutes. Configure the AWS Glue workflow to have an on-demand trigger that runs an AWS Glue crawler and then runs an AWS Glue job when the crawler finishes running successfully. Configure the AWS Glue job to process and load the data into the Amazon Redshift tables.
+C) Configure an AWS Lambda function to invoke an AWS Glue crawler when a file is loaded into the S3 bucket. Configure an AWS Glue job to process and load the data into the Amazon Redshift tables. Create a second Lambda function to run the AWS Glue job. Create an Amazon EventBridge rule to invoke the second Lambda function when the AWS Glue crawler finishes running successfully.
+D) Configure an AWS Lambda function to invoke an AWS Glue workflow when a file is loaded into the S3 bucket. Configure the AWS Glue workflow to have an on-demand trigger that runs an AWS Glue crawler and then runs an AWS Glue job when the crawler finishes running successfully. Configure the AWS Glue job to process and load the data into the Amazon Redshift tables. 
+E) Configure an AWS Lambda function to invoke an AWS Glue job when a file is loaded into the S3 bucket. Configure the AWS Glue job to read the files from the S3 bucket into an Apache Spark DataFrame. Configure the AWS Glue job to also put smaller partitions of the DataFrame into an Amazon Kinesis Data Firehose delivery stream. Configure the delivery stream to load data into the Amazon Redshift tables.
+Ans: B, D
+
+66. A financial company wants to use Amazon Athena to run on-demand SQL queries on a petabyte-scale dataset to support a business intelligence (BI) application. An AWS Glue job that runs during non-business hours updates the dataset once every day. The BI application has a standard data refresh frequency of 1 hour to comply with company policies.
+A data engineer wants to cost optimize the company's use of Amazon Athena without adding any additional infrastructure costs.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Configure an Amazon S3 Lifecycle policy to move data to the S3 Glacier Deep Archive storage class after 1 day. 
+B) Use the query result reuse feature of Amazon Athena for the SQL queries.
+C) Add an Amazon ElastiCache cluster between the BI application and Athena.
+D) Change the format of the files that are in the dataset to Apache Parquet.
+Ans: B
+
+67. A company's data engineer needs to optimize the performance of table SQL queries. The company stores data in an Amazon Redshift cluster. The data engineer cannot increase the size of the cluster because of budget constraints. The company stores the data in multiple tables and loads the data by using the EVEN distribution style. Some tables are hundreds of gigabytes in size. Other tables are less than 10 MB in size.
+Which solution will meet these requirements?
+A) Keep using the EVEN distribution style for all tables. Specify primary and foreign keys for all tables.
+B) Use the ALL distribution style for large tables. Specify primary and foreign keys for all tables. 
+C) Use the ALL distribution style for rarely updated small tables. Specify primary and foreign keys for all tables.
+D) Specify a combination of distribution, sort, and partition keys for all tables. 
+Ans: C
+
+68. A company receives .csv files that contain physical address data. The data is in columns that have the following names: Door_No, Street_Name, City, and Zip_Code. The company wants to create a single column to store these values in the following format:
+{
+"Door_No": "24",
+"Street_Name": "AAA street",
+"City": "BBB",
+"Zip_Code": "111111"
+}
+Which solution will meet this requirement with the LEAST coding effort?
+A) Use AWS Glue DataBrew to read the files. Use the NEST_TO_ARRAY transformation to create the new column.
+B) Use AWS Glue DataBrew to read the files. Use the NEST_TO_MAP transformation to create the new column. 
+C) Use AWS Glue DataBrew to read the files. Use the PIVOT transformation to create the new column.
+D) Write a Lambda function in Python to read the files. Use the Python data dictionary type to create the new column.
+Ans: B
+
+69. A company receives call logs as Amazon S3 objects that contain sensitive customer information. The company must protect the S3 objects by using encryption. The company must also use encryption keys that only specific employees can access.
+Which solution will meet these requirements with the LEAST effort?
+A) Use an AWS CloudHSM cluster to store the encryption keys. Configure the process that writes to Amazon S3 to make calls to CloudHSM to encrypt and decrypt the objects. Deploy an IAM policy that restricts access to the CloudHSM cluster.
+B) Use server-side encryption with customer-provided keys (SSE-C) to encrypt the objects that contain customer information. Restrict access to the keys that encrypt the objects.
+C) Use server-side encryption with AWS KMS keys (SSE-KMS) to encrypt the objects that contain customer information. Configure an IAM policy that restricts access to the KMS keys that encrypt the objects.
+D) Use server-side encryption with Amazon S3 managed keys (SSE-S3) to encrypt the objects that contain customer information. Configure an IAM policy that restricts access to the Amazon S3 managed keys that encrypt the objects. 
+Ans: C
+
+70. A company stores petabytes of data in thousands of Amazon S3 buckets in the S3 Standard storage class. The data supports analytics workloads that have unpredictable and variable data access patterns.
+The company does not access some data for months. However, the company must be able to retrieve all data within milliseconds. The company needs to optimize S3 storage costs.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Use S3 Storage Lens standard metrics to determine when to move objects to more cost- optimized storage classes. Create S3 Lifecycle policies for the S3 buckets to move objects to cost-optimized storage classes. Continue to refine the S3 Lifecycle policies in the future to optimize storage costs.
+B) Use S3 Storage Lens activity metrics to identify S3 buckets that the company accesses infrequently. Configure S3 Lifecycle rules to move objects from S3 Standard to the S3 Standard- Infrequent Access (S3 Standard-IA) and S3 Glacier storage classes based on the age of the data. 
+C) Use S3 Intelligent-Tiering. Activate the Deep Archive Access tier.
+D) Use S3 Intelligent-Tiering. Use the default access tier.
+Ans: D
+
+
 
 
 
