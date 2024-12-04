@@ -612,12 +612,67 @@ C) Use S3 Intelligent-Tiering. Activate the Deep Archive Access tier.
 D) Use S3 Intelligent-Tiering. Use the default access tier.
 Ans: D
 
+71. During a security review, a company identified a vulnerability in an AWS Glue job. The company discovered that credentials to access an Amazon Redshift cluster were hard coded in the job script.
+A data engineer must remediate the security vulnerability in the AWS Glue job. The solution must securely store the credentials.
+Which combination of steps should the data engineer take to meet these requirements? (Choose two.)
+A) Store the credentials in the AWS Glue job parameters.
+B) Store the credentials in a configuration file that is in an Amazon S3 bucket.
+C) Access the credentials from a configuration file that is in an Amazon S3 bucket by using the AWS Glue job.
+D) Store the credentials in AWS Secrets Manager.
+E) Grant the AWS Glue job IAM role access to the stored credentials.
+Ans: D, E
 
+72. A data engineer uses Amazon Redshift to run resource-intensive analytics processes once every month. Every month, the data engineer creates a new Redshift provisioned cluster. The data engineer deletes the Redshift provisioned cluster after the analytics processes are complete every month. Before the data engineer deletes the cluster each month, the data engineer unloads backup data from the cluster to an Amazon S3 bucket.
+The data engineer needs a solution to run the monthly analytics processes that does not require the data engineer to manage the infrastructure manually. Which solution will meet these requirements with the LEAST operational overhead?
+A) Use Amazon Step Functions to pause the Redshift cluster when the analytics processes are complete and to resume the cluster to run new processes every month.
+B) Use Amazon Redshift Serverless to automatically process the analytics workload.
+C) Use the AWS CLI to automatically process the analytics workload.
+D) Use AWS CloudFormation templates to automatically process the analytics workload.
+Ans: B
 
+73. A company receives a daily file that contains customer data in .xls format. The company stores the file in Amazon S3. The daily file is approximately 2 GB in size.
+A data engineer concatenates the column in the file that contains customer first names and the column that contains customer last names. The data engineer needs to determine the number of distinct customers in the file.
+Which solution will meet this requirement with the LEAST operational effort?
+A) Create and run an Apache Spark job in an AWS Glue notebook. Configure the job to read the S3 file and calculate the number of distinct customers.
+B) Create an AWS Glue crawler to create an AWS Glue Data Catalog of the S3 file. Run SQL queries from Amazon Athena to calculate the number of distinct customers.
+C) Create and run an Apache Spark job in Amazon EMR Serverless to calculate the number of distinct customers.
+D) Use AWS Glue DataBrew to create a recipe that uses the COUNT_DISTINCT aggregate function to calculate the number of distinct customers.
+Ans: D
 
+74. A healthcare company uses Amazon Kinesis Data Streams to stream real-time health data from wearable devices, hospital equipment, and patient records.
+A data engineer needs to find a solution to process the streaming data. The data engineer needs to store the data in an Amazon Redshift Serverless warehouse. The solution must support near real-time analytics of the streaming data and the previous day's data.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Load data into Amazon Kinesis Data Firehose. Load the data into Amazon Redshift.
+B) Use the streaming ingestion feature of Amazon Redshift.
+C) Load the data into Amazon S3. Use the COPY command to load the data into Amazon Redshift.
+D) Use the Amazon Aurora zero-ETL integration with Amazon Redshift.
+Ans: B
 
+75. A data engineer needs to use an Amazon QuickSight dashboard that is based on Amazon Athena queries on data that is stored in an Amazon S3 bucket. When the data engineer connects to the QuickSight dashboard, the data engineer receives an error message that indicates insufficient permissions.
+Which factors could cause to the permissions-related errors? (Choose two.)
+A) There is no connection between QuickSight and Athena.
+B) The Athena tables are not cataloged.
+C) QuickSight does not have access to the S3 bucket.
+D) QuickSight does not have access to decrypt S3 data.
+E) There is no IAM role assigned to QuickSight.
+Ans: C, D
 
+76. A company stores datasets in JSON format and .csv format in an Amazon S3 bucket. The company has Amazon RDS for Microsoft SQL Server databases, Amazon DynamoDB tables that are in provisioned capacity mode, and an Amazon Redshift cluster. A data engineering team must develop a solution that will give data scientists the ability to query all data sources by using syntax similar to SQL.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Use AWS Glue to crawl the data sources. Store metadata in the AWS Glue Data Catalog. Use Amazon Athena to query the data. Use SQL for structured data sources. Use PartiQL for data that is stored in JSON format.
+B) Use AWS Glue to crawl the data sources. Store metadata in the AWS Glue Data Catalog. Use Redshift Spectrum to query the data. Use SQL for structured data sources. Use PartiQL for data that is stored in JSON format.
+C) Use AWS Glue to crawl the data sources. Store metadata in the AWS Glue Data Catalog. Use AWS Glue jobs to transform data that is in JSON format to Apache Parquet or .csv format. Store the transformed data in an S3 bucket. Use Amazon Athena to query the original and transformed data from the S3 bucket.
+D) Use AWS Lake Formation to create a data lake. Use Lake Formation jobs to transform the data from all data sources to Apache Parquet format. Store the transformed data in an S3 bucket. Use Amazon Athena or Redshift Spectrum to query the data. 
+Ans: A
 
+77. A data engineer is configuring Amazon SageMaker Studio to use AWS Glue interactive sessions to prepare data for machine learning (ML) models.
+The data engineer receives an access denied error when the data engineer tries to prepare the data by using SageMaker Studio.
+Which change should the engineer make to gain access to SageMaker Studio?
+A) Add the AWSGlueServiceRole managed policy to the data engineer's IAM user.
+B) Add a policy to the data engineer's IAM user that includes the sts:AssumeRole action for the AWS Glue and SageMaker service principals in the trust policy.
+C) Add the AmazonSageMakerFullAccess managed policy to the data engineer's IAM user.
+D) Add a policy to the data engineer's IAM user that allows the sts:AddAssociation action for the AWS Glue and SageMaker service principals in the trust policy. 
+Ans: B, C
 
 
 
