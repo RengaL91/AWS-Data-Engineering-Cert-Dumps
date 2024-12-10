@@ -792,13 +792,181 @@ C) Create an Amazon Kinesis Data Firehose delivery stream to use Splunk as the d
 D) Configure an Amazon Kinesis Data Streams data stream to use Splunk as the destination. Create an AWS Lambda function to send the flow logs from CloudWatch Logs to the data stream.
 Ans: B
 
+91. A company has a data lake on AWS. The data lake ingests sources of data from business units. The company uses Amazon Athena for queries. The storage layer is Amazon S3 with an AWS Glue Data Catalog as a metadata repository.
+The company wants to make the data available to data scientists and business analysts. However, the company first needs to manage fine-grained, column- level data access for Athena based on the user roles and responsibilities.
+Which solution will meet these requirements?
+A) Set up AWS Lake Formation. Define security policy-based rules for the users and applications by IAM role in Lake Formation. 
+B) Define an IAM resource-based policy for AWS Glue tables. Attach the same policy to IAM user groups.
+C) Define an IAM identity-based policy for AWS Glue tables. Attach the same policy to IAM roles. Associate the IAM roles with IAM groups that contain the users.
+D) Create a resource share in AWS Resource Access Manager (AWS RAM) to grant access to IAM users.
+Ans: A
 
+92. A company has developed several AWS Glue extract, transform, and load (ETL) jobs to validate and transform data from Amazon S3. The ETL jobs load the data into Amazon RDS for MySQL in batches once every day. The ETL jobs use a DynamicFrame to read the S3 data.
+The ETL jobs currently process all the data that is in the S3 bucket. However, the company wants the jobs to process only the daily incremental data.
+Which solution will meet this requirement with the LEAST coding effort?
+A) Create an ETL job that reads the S3 file status and logs the status in Amazon DynamoDB.
+B) Enable job bookmarks for the ETL jobs to update the state after a run to keep track of previously processed data. 
+C) Enable job metrics for the ETL jobs to help keep track of processed objects in Amazon CloudWatch.
+D) Configure the ETL jobs to delete processed objects from Amazon S3 after each run.
+Ans: B
 
+93. An online retail company has an application that runs on Amazon EC2 instances that are in a VPC. The company wants to collect flow logs for the VPC and analyze network traffic.
+Which solution will meet these requirements MOST cost-effectively?
+A) Publish flow logs to Amazon CloudWatch Logs. Use Amazon Athena for analytics.
+B) Publish flow logs to Amazon CloudWatch Logs. Use an Amazon OpenSearch Service cluster for analytics.
+C) Publish flow logs to Amazon S3 in text format. Use Amazon Athena for analytics.
+D) Publish flow logs to Amazon S3 in Apache Parquet format. Use Amazon Athena for analytics.
+Ans: D
 
+94. A retail company stores transactions, store locations, and customer information tables in four reserved ra3.4xlarge Amazon Redshift cluster nodes. All three tables use even table distribution.
+The company updates the store location table only once or twice every few years.
+A data engineer notices that Redshift queues are slowing down because the whole store location table is constantly being broadcast to all four compute nodes for most queries. The data engineer wants to speed up the query performance by minimizing the broadcasting of the store location table.
+Which solution will meet these requirements in the MOST cost-effective way?
+A) Change the distribution style of the store location table from EVEN distribution to ALL distribution. 
+B) Change the distribution style of the store location table to KEY distribution based on the column that has the highest dimension.
+C) Add a join column named store_id into the sort key for all the tables.
+D) Upgrade the Redshift reserved node to a larger instance size in the same instance family.
+Ans: A
 
+95. A company has a data warehouse that contains a table that is named Sales. The company stores the table in Amazon Redshift. The table includes a column that is named city_name. The company wants to query the table to find all rows that have a city_name that starts with "San" or "El".
+Which SQL query will meet this requirement?
+A) Select * from Sales where city_name ~ ‘$(San|El)*’;
+B) Select * from Sales where city_name ~ ‘^(San|El)*’; 
+C) Select * from Sales where city_name ~’$(San&El)*’; 
+D) Select * from Sales where city_name ~ ‘^(San&El)*’;
+Ans: B
 
+96. A company needs to send customer call data from its on-premises PostgreSQL database to AWS to generate near real-time insights. The solution must capture and load updates from operational data stores that run in the PostgreSQL database. The data changes continuously.
+A data engineer configures an AWS Database Migration Service (AWS DMS) ongoing replication task. The task reads changes in near real time from the PostgreSQL source database transaction logs for each table. The task then sends the data to an Amazon Redshift cluster for processing.
+The data engineer discovers latency issues during the change data capture (CDC) of the task. The data engineer thinks that the PostgreSQL source database is causing the high latency.
+Which solution will confirm that the PostgreSQL database is the source of the high latency?
+A) Use Amazon CloudWatch to monitor the DMS task. Examine the CDCIncomingChanges metric to identify delays in the CDC from the source database.
+B) Verify that logical replication of the source database is configured in the postgresql.conf configuration file.
+C) Enable Amazon CloudWatch Logs for the DMS endpoint of the source database. Check for error messages.
+D) Use Amazon CloudWatch to monitor the DMS task. Examine the CDCLatencySource metric to identify delays in the CDC from the source database. 
+Ans: D
 
+97. A lab uses IoT sensors to monitor humidity, temperature, and pressure for a project. The sensors send 100 KB of data every 10 seconds. A downstream process will read the data from an Amazon S3 bucket every 30 seconds.
+Which solution will deliver the data to the S3 bucket with the LEAST latency?
+A) Use Amazon Kinesis Data Streams and Amazon Kinesis Data Firehose to deliver the data to the S3 bucket. Use the default buffer interval for Kinesis Data Firehose.
+B) Use Amazon Kinesis Data Streams to deliver the data to the S3 bucket. Configure the stream to use 5 provisioned shards.
+C) Use Amazon Kinesis Data Streams and call the Kinesis Client Library to deliver the data to the S3 bucket. Use a 5 second buffer interval from an application.
+D) Use Amazon Managed Service for Apache Flink (previously known as Amazon Kinesis Data Analytics) and Amazon Kinesis Data Firehose to deliver the data to the S3 bucket. Use a 5 second buffer interval for Kinesis Data Firehose. 
+Ans: D
 
+98. A company wants to use machine learning (ML) to perform analytics on data that is in an Amazon S3 data lake. The company has two data transformation requirements that will give consumers within the company the ability to create reports.
+The company must perform daily transformations on 300 GB of data that is in a variety format that must arrive in Amazon S3 at a scheduled time. The company must perform one-time transformations of terabytes of archived data that is in the S3 data lake. The company uses Amazon Managed Workflows for Apache Airflow (Amazon MWAA) Directed Acyclic Graphs (DAGs) to orchestrate processing.
+Which combination of tasks should the company schedule in the Amazon MWAA DAGs to meet these requirements MOST cost-effectively? (Choose two.)
+A) For daily incoming data, use AWS Glue crawlers to scan and identify the schema. 
+B) For daily incoming data, use Amazon Athena to scan and identify the schema.
+C) For daily incoming data, use Amazon Redshift to perform transformations.
+D) For daily and archived data, use Amazon EMR to perform data transformations. 
+E) For archived data, use Amazon SageMaker to perform data transformations.
+Ans: A, D
+
+99. A retail company uses AWS Glue for extract, transform, and load (ETL) operations on a dataset that contains information about customer orders. The company wants to implement specific validation rules to ensure data accuracy and consistency.
+Which solution will meet these requirements?
+A) Use AWS Glue job bookmarks to track the data for accuracy and consistency.
+B) Create custom AWS Glue Data Quality rulesets to define specific data quality checks. 
+C) Use the built-in AWS Glue Data Quality transforms for standard data quality validations.
+D) Use AWS Glue Data Catalog to maintain a centralized data schema and metadata repository.
+Ans: B
+
+100. An insurance company stores transaction data that the company compressed with gzip.
+The company needs to query the transaction data for occasional audits. Which solution will meet this requirement in the MOST cost-effective way?
+A) Store the data in Amazon Glacier Flexible Retrieval. Use Amazon S3 Glacier Select to query the data.
+B) Store the data in Amazon S3. Use Amazon S3 Select to query the data. 
+C) Store the data in Amazon S3. Use Amazon Athena to query the data.
+D) Store the data in Amazon Glacier Instant Retrieval. Use Amazon Athena to query the data.
+Ans: B
+
+101. A data engineer finished testing an Amazon Redshift stored procedure that processes and inserts data into a table that is not mission critical. The engineer wants to automatically run the stored procedure on a daily basis.
+Which solution will meet this requirement in the MOST cost-effective way?
+A) Create an AWS Lambda function to schedule a cron job to run the stored procedure.
+B) Schedule and run the stored procedure by using the Amazon Redshift Data API in an Amazon EC2 Spot Instance.
+C) Use query editor v2 to run the stored procedure on a schedule.
+D) Schedule an AWS Glue Python shell job to run the stored procedure.
+Ans: A
+
+102. A marketing company collects clickstream data. The company sends the clickstream data to Amazon Kinesis Data Firehose and stores the clickstream data in Amazon S3. The company wants to build a series of dashboards that hundreds of users from multiple departments will use.
+The company will use Amazon QuickSight to develop the dashboards. The company wants a solution that can scale and provide daily updates about clickstream activity.
+Which combination of steps will meet these requirements MOST cost- effectively? (Choose two.)
+A) Use Amazon Redshift to store and query the clickstream data.
+B) Use Amazon Athena to query the clickstream data 
+C) Use Amazon S3 analytics to query the clickstream data.
+D) Access the query data through a QuickSight direct SQL query.
+E) Access the query data through QuickSight SPICE (Super-fast, Parallel, In-memory Calculation Engine). Configure a daily refresh for the dataset. 
+Ans: B, E
+
+103. A data engineer is building a data orchestration workflow. The data engineer plans to use a hybrid model that includes some on-premises resources and some resources that are in the cloud. The data engineer wants to prioritize portability and open source resources.
+Which service should the data engineer use in both the on-premises environment and the cloud-based environment?
+A) AWS Data Exchange
+B) Amazon Simple Workflow Service (Amazon SWF)
+C) Amazon Managed Workflows for Apache Airflow (Amazon MWAA) 
+D) AWS Glue
+Ans: C
+
+104. A gaming company uses a NoSQL database to store customer information. The company is planning to migrate to AWS.
+The company needs a fully managed AWS solution that will handle high online transaction processing (OLTP) workload, provide single-digit millisecond performance, and provide high availability around the world.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Amazon Keyspaces (for Apache Cassandra)
+B) Amazon DocumentDB (with MongoDB compatibility) 
+C) Amazon DynamoDB 
+D) Amazon Timestream
+Ans: C
+
+105. A data engineer creates an AWS Lambda function that an Amazon EventBridge event will invoke. When the data engineer tries to invoke the Lambda function by using an EventBridge event, an AccessDeniedException message appears.
+How should the data engineer resolve the exception?
+A) Ensure that the trust policy of the Lambda function execution role allows EventBridge to assume the execution role.
+B) Ensure that both the IAM role that EventBridge uses and the Lambda function's resource- based policy have the necessary permissions. 
+C) Ensure that the subnet where the Lambda function is deployed is configured to be a private subnet.
+D) Ensure that EventBridge schemas are valid and that the event mapping configuration is correct.
+Ans: A
+
+106. A company uses a data lake that is based on an Amazon S3 bucket. To comply with regulations, the company must apply two layers of server-side encryption to files that are uploaded to the S3 bucket. The company wants to use an AWS Lambda function to apply the necessary encryption.
+Which solution will meet these requirements?
+A) Use both server-side encryption with AWS KMS keys (SSE-KMS) and the Amazon S3 Encryption Client.
+B) Use dual-layer server-side encryption with AWS KMS keys (DSSE-KMS). 
+C) Use server-side encryption with customer-provided keys (SSE-C) before files are uploaded.
+D) Use server-side encryption with AWS KMS keys (SSE-KMS).
+Ans: B
+
+107. A data engineer notices that Amazon Athena queries are held in a queue before the queries run.
+How can the data engineer prevent the queries from queueing?
+A) Increase the query result limit.
+B) Configure provisioned capacity for an existing workgroup. 
+C) Use federated queries.
+D) Allow users who run the Athena queries to an existing workgroup.
+Ans: B
+
+108. A data engineer needs to debug an AWS Glue job that reads from Amazon S3 and writes to Amazon Redshift. The data engineer enabled the bookmark feature for the AWS Glue job.
+The data engineer has set the maximum concurrency for the AWS Glue job to 1.
+The AWS Glue job is successfully writing the output to Amazon Redshift. However, the Amazon S3 files that were loaded during previous runs of the AWS Glue job are being reprocessed by subsequent runs.
+What is the likely reason the AWS Glue job is reprocessing the files?
+A) The AWS Glue job does not have the s3:GetObjectAcl permission that is required for bookmarks to work correctly.
+B) The maximum concurrency for the AWS Glue job is set to 1.
+C) The data engineer incorrectly specified an older version of AWS Glue for the Glue job. 
+D) The AWS Glue job does not have a required commit statement.
+Ans: D
+
+109. An ecommerce company wants to use AWS to migrate data pipelines from an on-premises environment into the AWS Cloud. The company currently uses a third-party tool in the on-premises environment to orchestrate data ingestion processes.
+The company wants a migration solution that does not require the company to manage servers. The solution must be able to orchestrate Python and Bash scripts. The solution must not require the company to refactor any code.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) AWS Lambda
+B) Amazon Managed Workflows for Apache Airflow (Amazon MVVAA) 
+C) AWS Step Functions 
+D) AWS Glue
+Ans. B
+
+110. A retail company stores data from a product lifecycle management (PLM) application in an on-premises MySQL database. The PLM application frequently updates the database when transactions occur.
+The company wants to gather insights from the PLM application in near real time. The company wants to integrate the insights with other business datasets and to analyze the combined dataset by using an Amazon Redshift data warehouse.
+The company has already established an AWS Direct Connect connection between the on-premises infrastructure and AWS.
+Which solution will meet these requirements with the LEAST development effort?
+A) Run a scheduled AWS Glue extract, transform, and load (ETL) job to get the MySQL database updates by using a Java Database Connectivity (JDBC) connection. Set Amazon Redshift as the destination for the ETL job.
+B) Run a full load plus CDC task in AWS Database Migration Service (AWS DMS) to continuously replicate the MySQL database changes. Set Amazon Redshift as the destination for the task.
+C) Use the Amazon AppFlow SDK to build a custom connector for the MySQL database to continuously replicate the database changes. Set Amazon Redshift as the destination for the connector.
+D) Run scheduled AWS DataSync tasks to synchronize data from the MySQL database. Set Amazon Redshift as the destination for the tasks.
+Ans: B
 
 
 
