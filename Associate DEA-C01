@@ -674,12 +674,123 @@ C) Add the AmazonSageMakerFullAccess managed policy to the data engineer's IAM u
 D) Add a policy to the data engineer's IAM user that allows the sts:AddAssociation action for the AWS Glue and SageMaker service principals in the trust policy. 
 Ans: B, C
 
+78. A company extracts approximately 1 TB of data every day from data sources such as SAP HANA, Microsoft SQL Server, MongoDB, Apache Kafka, and Amazon DynamoDB. Some of the data sources have undefined data schemas or data schemas that change.
+A data engineer must implement a solution that can detect the schema for these data sources. The solution must extract, transform, and load the data to an Amazon S3 bucket. The company has a service level agreement (SLA) to load the data into the S3 bucket within 15 minutes of data creation.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Use Amazon EMR to detect the schema and to extract, transform, and load the data into the S3 bucket. Create a pipeline in Apache Spark.
+B) Use AWS Glue to detect the schema and to extract, transform, and load the data into the S3 bucket. Create a pipeline in Apache Spark.
+C) Create a PySpark program in AWS Lambda to extract, transform, and load the data into the S3 bucket.
+D) Create a stored procedure in Amazon Redshift to detect the schema and to extract, transform, and load the data into a Redshift Spectrum table. Access the table from Amazon S3.
+Ans: B
 
+79.A company has multiple applications that use datasets that are stored in an Amazon S3 bucket. The company has an ecommerce application that generates a dataset that contains personally identifiable information (PII). The company has an internal analytics application that does not require access to the PII.
+To comply with regulations, the company must not share PII unnecessarily. A data engineer needs to implement a solution that with redact PII dynamically, based on the needs of each application that accesses the dataset.
+Which solution will meet the requirements with the LEAST operational overhead?
+A) Create an S3 bucket policy to limit the access each application has. Create multiple copies of the dataset. Give each dataset copy the appropriate level of redaction for the needs of the application that accesses the copy. 
+B) Create an S3 Object Lambda endpoint. Use the S3 Object Lambda endpoint to read data from the S3 bucket. Implement redaction logic within an S3 Object Lambda function to dynamically redact PII based on the needs of each application that accesses the data.
+C) Use AWS Glue to transform the data for each application. Create multiple copies of the dataset. Give each dataset copy the appropriate level of redaction for the needs of the application that accesses the copy.
+D) Create an API Gateway endpoint that has custom authorizers. Use the API Gateway endpoint to read data from the S3 bucket. Initiate a REST API call to dynamically redact PII based on the needs of each application that accesses the data.
+Ans: B
 
+80.A data engineer needs to build an extract, transform, and load (ETL) job. The ETL job will process daily incoming .csv files that users upload to an Amazon S3 bucket. The size of each S3 object is less than 100 MB.
+Which solution will meet these requirements MOST cost-effectively?
+A) Write a custom Python application. Host the application on an Amazon Elastic Kubernetes Service (Amazon EKS) cluster.
+B) Write a PySpark ETL script. Host the script on an Amazon EMR cluster.
+C) Write an AWS Glue PySpark job. Use Apache Spark to transform the data.
+D) Write an AWS Glue Python shell job. Use pandas to transform the data.
+Ans: D
 
+81.A data engineer creates an AWS Glue Data Catalog table by using an AWS Glue crawler that is named Orders. The data engineer wants to add the following new partitions:
+s3://transactions/orders/order_date=2023-01-01 s3://transactions/orders/order_date=2023-01-02
+The data engineer must edit the metadata to include the new partitions in the table without scanning all the folders and files in the location of the table.
+Which data definition language (DDL) statement should the data engineer use in Amazon Athena?
+A) ALTER TABLE Orders ADD PARTITION(order_date=’2023-01-01’) LOCATION ‘s3://transactions/ orders/order_date=2023-01-01’;
+ALTER TABLE Orders ADD PARTITION(order_date=’2023-01-02’) LOCATION ‘s3://transactions/ orders/order_date=2023-01-02’; 
+B) MSCK REPAIR TABLE Orders;
+C) REPAIR TABLE Orders;
+D) ALTER TABLE Orders MODIFY PARTITION(order_date=’2023-01-01’) LOCATION ‘s3://transactions/ orders/2023-01-01’;
+ALTER TABLE Orders MODIFY PARTITION(order_date=’2023-01-02’) LOCATION ‘s3://transactions/ orders/2023-01-02’;
+Ans: A
 
+82. A company stores 10 to 15 TB of uncompressed .csv files in Amazon S3. The company is evaluating Amazon Athena as a one-time query engine.
+The company wants to transform the data to optimize query runtime and storage costs.
+Which file format and compression solution will meet these requirements for Athena queries?
+A) .csv format compressed with zip
+B) JSON format compressed with bzip2
+C) Apache Parquet format compressed with Snappy
+D) Apache Avro format compressed with LZO
+Ans: C
 
+83. A company uses Apache Airflow to orchestrate the company's current on- premises data pipelines. The company runs SQL data quality check tasks as part of the pipelines. The company wants to migrate the pipelines to AWS and to use AWS managed services.
+Which solution will meet these requirements with the LEAST amount of refactoring?
+A) Setup AWS Outposts in the AWS Region that is nearest to the location where the company uses Airflow. Migrate the servers into Outposts hosted Amazon EC2 instances. Update the pipelines to interact with the Outposts hosted EC2 instances instead of the on-premises pipelines.
+B) Create a custom Amazon Machine Image (AMI) that contains the Airflow application and the code that the company needs to migrate. Use the custom AMI to deploy Amazon EC2 instances. Update the network connections to interact with the newly deployed EC2 instances.
+C) Migrate the existing Airflow orchestration configuration into Amazon Managed Workflows for Apache Airflow (Amazon MWAA). Create the data quality checks during the ingestion to validate the data quality by using SQL tasks in Airflow.
+D) Convert the pipelines to AWS Step Functions workflows. Recreate the data quality checks in SQL as Python based AWS Lambda functions.
+Ans: C
 
+84. A company uses Amazon EMR as an extract, transform, and load (ETL) pipeline to transform data that comes from multiple sources. A data engineer must orchestrate the pipeline to maximize performance.
+Which AWS service will meet this requirement MOST cost effectively?
+A) Amazon EventBridge
+B) Amazon Managed Workflows for Apache Airflow (Amazon MWAA) 
+C) AWS Step Functions
+D) AWS Glue Workflows 
+Ans: D
+
+85. An online retail company stores Application Load Balancer (ALB) access logs in an Amazon S3 bucket. The company wants to use Amazon Athena to query the logs to analyze traffic patterns.
+A data engineer creates an unpartitioned table in Athena. As the amount of the data gradually increases, the response time for queries also increases. The data engineer wants to improve the query performance in Athena.
+Which solution will meet these requirements with the LEAST operational effort?
+A) Create an AWS Glue job that determines the schema of all ALB access logs and writes the partition metadata to AWS Glue Data Catalog.
+B) Create an AWS Glue crawler that includes a classifier that determines the schema of all ALB access logs and writes the partition metadata to AWS Glue Data Catalog. 
+C) Create an AWS Lambda function to transform all ALB access logs. Save the results to Amazon S3 in Apache Parquet format. Partition the metadata. Use Athena to query the transformed data.
+D) Use Apache Hive to create bucketed tables. Use an AWS Lambda function to transform all ALB access logs.
+Ans: B
+
+86. A company has a business intelligence platform on AWS. The company uses an AWS Storage Gateway Amazon S3 File Gateway to transfer files from the company's on-premises environment to an Amazon S3 bucket.
+A data engineer needs to setup a process that will automatically launch an AWS Glue workflow to run a series of AWS Glue jobs when each file transfer finishes successfully.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Determine when the file transfers usually finish based on previous successful file transfers. Set up an Amazon EventBridge scheduled event to initiate the AWS Glue jobs at that time of day.
+B) Set up an Amazon EventBridge event that initiates the AWS Glue workflow after every successful S3 File Gateway file transfer event. 
+C) Set up an on-demand AWS Glue workflow so that the data engineer can start the AWS Glue workflow when each file transfer is complete.
+D) Set up an AWS Lambda function that will invoke the AWS Glue Workflow. Set up an event for the creation of an S3 object as a trigger for the Lambda function.
+Ans: B
+
+87. A retail company uses Amazon Aurora PostgreSQL to process and store live transactional data. The company uses an Amazon Redshift cluster for a data warehouse.
+An extract, transform, and load (ETL) job runs every morning to update the Redshift cluster with new data from the PostgreSQL database. The company has grown rapidly and needs to cost optimize the Redshift cluster.
+A data engineer needs to create a solution to archive historical data. The data engineer must be able to run analytics queries that effectively combine data from live transactional data in PostgreSQL, current data in Redshift, and archived historical data. The solution must keep only the most recent 15 months of data in Amazon Redshift to reduce costs.
+Which combination of steps will meet these requirements? (Choose two.)
+A) Configure the Amazon Redshift Federated Query feature to query live transactional data that is in the PostgreSQL database.
+B) Configure Amazon Redshift Spectrum to query live transactional data that is in the PostgreSQL database.
+C) Schedule a monthly job to copy data that is older than 15 months to Amazon S3 by using the UNLOAD command. Delete the old data from the Redshift cluster. Configure Amazon Redshift Spectrum to access historical data in Amazon S3.
+D) Schedule a monthly job to copy data that is older than 15 months to Amazon S3 GlacierFlexible Retrieval by using the UNLOAD command. Delete the old data from the Redshift cluster. Configure Redshift Spectrum to access historical data from S3 Glacier Flexible Retrieval.
+E) Create a materialized view in Amazon Redshift that combines live, current, and historical data from different sources.
+Ans: A, C
+
+88. A manufacturing company has many IoT devices in facilities around the world. The company uses Amazon Kinesis Data Streams to collect data from the devices. The data includes device ID, capture date, measurement type, measurement value, and facility ID. The company uses facility ID as the partition key.
+The company's operations team recently observed many WriteThroughputExceeded exceptions. The operations team found that some shards were heavily used but other shards were generally idle.
+How should the company resolve the issues that the operations team observed?
+A) Change the partition key from facility ID to a randomly generated key.
+B) Increase the number of shards.
+C) Archive the data on the producer's side.
+D) Change the partition key from facility ID to capture date.
+Ans: A
+
+89. A data engineer wants to improve the performance of SQL queries in Amazon Athena that run against a sales data table.
+The data engineer wants to understand the execution plan of a specific SQL statement. The data engineer also wants to see the computational cost of each operation in a SQL query.
+Which statement does the data engineer need to run to meet these requirements?
+A) EXPLAIN SELECT * FROM sales;
+B) EXPLAIN ANALYZE FROM sales;
+C) EXPLAIN ANALYZE SELECT * FROM sales; 
+D) EXPLAIN FROM sales;
+Ans: C
+
+90.A company plans to provision a log delivery stream within a VPC. The company configured the VPC flow logs to publish to Amazon CloudWatch Logs. The company needs to send the flow logs to Splunk in near real time for further analysis.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Configure an Amazon Kinesis Data Streams data stream to use Splunk as the destination. Create a CloudWatch Logs subscription filter to send log events to the data stream.
+B) Create an Amazon Kinesis Data Firehose delivery stream to use Splunk as the destination. Create a CloudWatch Logs subscription filter to send log events to the delivery stream.
+C) Create an Amazon Kinesis Data Firehose delivery stream to use Splunk as the destination. Create an AWS Lambda function to send the flow logs from CloudWatch Logs to the delivery stream.
+D) Configure an Amazon Kinesis Data Streams data stream to use Splunk as the destination. Create an AWS Lambda function to send the flow logs from CloudWatch Logs to the data stream.
+Ans: B
 
 
 
