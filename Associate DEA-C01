@@ -1106,3 +1106,137 @@ B) Use Amazon Athena with an Apache Hive metastore to query the Avro objects in 
 C) Use Amazon Athena to query the data from the Avro objects in Amazon S3. Configure Amazon Keyspaces as the data catalog. Connect Amazon QuickSight to Athena to create the dashboards. 
 D) Use AWS Glue to catalog the data. Use S3 Select to query the Avro objects in Amazon S3. Connect Amazon QuickSight to the S3 bucket to create the dashboards.
 Ans: A
+
+127. A company stores petabytes of data in thousands of Amazon S3 buckets in the S3 Standard storage class. The data supports analytics workloads that have unpredictable and variable data access patterns.
+The company does not access some data for months. However, the company must be able to retrieve all data within milliseconds. The company needs to optimize S3 storage costs.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Use S3 Storage Lens standard metrics to determine when to move objects to more cost- optimized storage classes. Create S3 Lifecycle policies for the S3 buckets to move objects to cost-optimized storage classes. Continue to refine the S3 Lifecycle policies in the future to optimize storage costs.
+B) Use S3 Storage Lens activity metrics to identify S3 buckets that the company accesses infrequently. Configure S3 Lifecycle rules to move objects from S3 Standard to the S3 Standard- Infrequent Access (S3 Standard-IA) and S3 Glacier storage classes based on the age of the data. 
+C) Use S3 Intelligent-Tiering. Activate the Deep Archive Access tier.
+D) Use S3 Intelligent-Tiering. Use the default access tier.
+Ans: D
+
+128. A media company wants to use Amazon OpenSearch Service to analyze rea-time data about popular musical artists and songs. The company expects to ingest millions of new data events every day. The new data events will arrive through an Amazon Kinesis data stream. The company must transform the data and then ingest the data into the OpenSearch Service domain.
+Which method should the company use to ingest the data with the LEAST operational overhead?
+A) Use Amazon Kinesis Data Firehose and an AWS Lambda function to transform the data and deliver the transformed data to OpenSearch Service.
+B) Use a Logstash pipeline that has prebuilt filters to transform the data and deliver the transformed data to OpenSearch Service.
+C) Use an AWS Lambda function to call the Amazon Kinesis Agent to transform the data and deliver the transformed data OpenSearch Service.
+D) Use the Kinesis Client Library (KCL) to transform the data and deliver the transformed data to OpenSearch Service.
+Ans: A
+
+129. A company stores customer data tables that include customer addresses in an AWS Lake Formation data lake. To comply with new regulations, the company must ensure that users cannot access data for customers who are in Canada.
+The company needs a solution that will prevent user access to rows for customers who are in Canada.
+Which solution will meet this requirement with the LEAST operational effort?
+A) Set a row-level filter to prevent user access to a row where the country is Canada.
+B) Create an IAM role that restricts user access to an address where the country is Canada.
+C) Set a column-level filter to prevent user access to a row where the country is Canada.
+D) Apply a tag to all rows where Canada is the country. Prevent user access where the tag is equal to “Canada”.
+Ans: A
+
+130. A company has implemented a lake house architecture in Amazon Redshift. The company needs to give users the ability to authenticate into Redshift query editor by using a third-party identity provider (IdP).
+A data engineer must set up the authentication mechanism.
+What is the first step the data engineer should take to meet this requirement?
+A) Register the third-party IdP as an identity provider in the configuration settings of the Redshift cluster. 
+B) Register the third-party IdP as an identity provider from within Amazon Redshift.
+C) Register the third-party IdP as an identity provider for AVS Secrets Manager. Configure Amazon Redshift to use Secrets Manager to manage user credentials.
+D) Register the third-party IdP as an identity provider for AWS Certificate Manager (ACM). Configure Amazon Redshift to use ACM to manage user credentials.
+Ans: A
+
+131. A company currently uses a provisioned Amazon EMR cluster that includes general purpose Amazon EC2 instances. The EMR cluster uses EMR managed scaling between one to five task nodes for the company’s long-running Apache Spark extract, transform, and load (ETL) job. The company runs the ETL job every day.
+When the company runs the ETL job, the EMR cluster quickly scales up to five nodes. The EMR cluster often reaches maximum CPU usage, but the memory usage remains under 30%.
+The company wants to modify the EMR cluster configuration to reduce the EMR costs to run the daily ETL job.
+Which solution will meet these requirements MOST cost-effectively?
+A) Increase the maximum number of task nodes for EMR managed scaling to 10.
+B) Change the task node type from general purpose EC2 instances to memory optimized EC2 instances.
+C) Switch the task node type from general purpose Re instances to compute optimized EC2 instances.
+D) Reduce the scaling cooldown period for the provisioned EMR cluster.
+Ans: C
+
+132. A company uploads .csv files to an Amazon S3 bucket. The company’s data platform team has set up an AWS Glue crawler to perform data discovery and to create the tables and schemas.
+An AWS Glue job writes processed data from the tables to an Amazon Redshift database. The AWS Glue job handles column mapping and creates the Amazon Redshift tables in the Redshift database appropriately.
+If the company reruns the AWS Glue job for any reason, duplicate records are introduced into the Amazon Redshift tables. The company needs a solution that will update the Redshift tables without duplicates.
+Which solution will meet these requirements?
+A) Modify the AWS Glue job to copy the rows into a staging Redshift table. Add SQL commands to update the existing rows with new values from the staging Redshift table.
+B) Modify the AWS Glue job to load the previously inserted data into a MySQL database. Perform an upsert operation in the MySQL database. Copy the results to the Amazon Redshift tables.
+C) Use Apache Spark’s DataFrame dropDuplicates() API to eliminate duplicates. Write the data to the Redshift tables.
+D) Use the AWS Glue ResolveChoice built-in transform to select the value of the column from the most recent record.
+Ans: A
+
+133. A company is using Amazon Redshift to build a data warehouse solution. The company is loading hundreds of files into a fact table that is in a Redshift cluster.
+The company wants the data warehouse solution to achieve the greatest possible throughput. The solution must use cluster resources optimally when the company loads data into the fact table.
+Which solution will meet these requirements?
+A) Use multiple COPY commands to load the data into the Redshift cluster.
+B) Use S3DistCp to load multiple files into Hadoop Distributed File System (HDFS). Use an HDFS connector to ingest the data into the Redshift cluster.
+C) Use a number of INSERT statements equal to the number of Redshift cluster nodes. Load the data in parallel into each node.
+D) Use a single COPY command to load the data into the Redshift cluster.
+Ans: A
+
+134. A company ingests data from multiple data sources and stores the data in an Amazon S3 bucket. An AWS Glue extract, transform, and load (ETL) job transforms the data and writes the transformed data to an Amazon S3 based data lake. The company uses Amazon Athena to query the data that is in the data lake.
+The company needs to identify matching records even when the records do not have a common unique identifier.
+Which solution will meet this requirement?
+A) Use Amazon Macie pattern matching as part of the ETL job.
+B) Train and use the AWS Glue PySpark Filter class in the ETL job.
+C) Partition tables and use the ETL job to partition the data on a unique identifier.
+D) Train and use the AWS Lake Formation FindMatches transform in the ETL job. 
+Ans: D
+
+135. A data engineer is using an AWS Glue crawler to catalog data that is in an Amazon S3 bucket. The S3 bucket contains both .csv and json files. The data engineer configured the crawler to exclude the .json files from the catalog.
+When the data engineer runs queries in Amazon Athena, the queries also process the excluded .json files. The data engineer wants to resolve this issue. The data engineer needs a solution that will not affect access requirements for the .csv files in the source S3 bucket.
+Which solution will meet this requirement with the SHORTEST query times?
+A) Adjust the AWS Glue crawler settings to ensure that the AWS Glue crawler also excludes .json files.
+B) Use the Athena console to ensure the Athena queries also exclude the .json files.
+C) Relocate the .json files to a different path within the S3 bucket.
+D) Use S3 bucket policies to block access to the .json files.
+Ans: C
+
+136. A data engineer set up an AWS Lambda function to read an object that is stored in an Amazon S3 bucket. The object is encrypted by an AWS KMS key.
+The data engineer configured the Lambda function’s execution role to access the S3 bucket. However, the Lambda function encountered an error and failed to retrieve the content of the object.
+What is the likely cause of the error?
+A) The data engineer misconfigured the permissions of the S3 bucket. The Lambda function could not access the object.
+B) The Lambda function is using an outdated SDK version, which caused the read failure.
+C) The S3 bucket is located in a different AWS Region than the Region where the data engineer works. Latency issues caused the Lambda function to encounter an error.
+D) The Lambda function’s execution role does not have the necessary permissions to access the KMS key that can decrypt the S3 object. 
+Ans: D
+
+137. A data engineer has implemented data quality rules in 1,000 AWS Glue Data Catalog tables. Because of a recent change in business requirements, the data engineer must edit the data quality rules.
+How should the data engineer meet this requirement with the LEAST operational overhead?
+A) Create a pipeline in AWS Glue ETL to edit the rules for each of the 1,000 Data Catalog tables. Use an AWS Lambda function to call the corresponding AWS Glue job for each Data Catalog table.
+B) Create an AWS Lambda function that makes an API call to AWS Glue Data Quality to make the edits.
+C) Create an Amazon EMR cluster. Run a pipeline on Amazon EMR that edits the rules for each Data Catalog table. Use an AWS Lambda function to run the EMR pipeline.
+D) Use the AWS Management Console to edit the rules within the Data Catalog.
+Ans: B
+
+138. Two developers are working on separate application releases. The developers have created feature branches named Branch A and Branch B by using a GitHub repository’s master branch as the source.
+The developer for Branch A deployed code to the production system. The code for Branch B will merge into a master branch in the following week’s scheduled application release.
+Which command should the developer for Branch B run before the developer raises a pull request to the master branch?
+A) git diff branchB master
+git commit -m
+B) git pull master
+C) git rebase master 
+D) git fetch -b master
+Ans: C
+
+139. A company stores employee data in Amazon Resdshift. A table names Employee uses columns named Region ID, Department ID, and Role ID as a compound sort key.
+Which queries will MOST increase the speed of query by using a compound sort key of the table? (Choose two.)
+A) Select *from Employee where Region ID=’North America’;
+B) Select *from Employee where Region ID=’North America’ and Department ID=20; 
+C) Select *from Employee where Department ID=20 and Region ID=’North America’;
+D) Select *from Employee where Role ID=50;
+E) Select *from Employee where Region ID=’North America’ and Role ID=50;
+Ans: B, C
+
+140. A company receives test results from testing facilities that are located around the world. The company stores the test results in millions of 1 KB JSON files in an Amazon S3 bucket. A data engineer needs to process the files, convert them into Apache Parquet format, and load them into Amazon Redshift tables. The data engineer uses AWS Glue to process the files, AWS Step Functions to orchestrate the processes, and Amazon EventBridge to schedule jobs.
+The company recently added more testing facilities. The time required to process files is increasing. The data engineer must reduce the data processing time.
+Which solution will MOST reduce the data processing time?
+A) Use AWS Lambda to group the raw input files into larger files. Write the larger files back to Amazon S3. Use AWS Glue to process the files. Load the files into the Amazon Redshift tables. 
+B) Use the AWS Glue dynamic frame file-grouping option to ingest the raw input files. Process the files. Load the files into the Amazon Redshift tables. 
+C) Use the Amazon Redshift COPY command to move the raw input files from Amazon S3 directly into the Amazon Redshift tables. Process the files in Amazon Redshift.
+D) Use Amazon EMR instead of AWS Glue to group the raw input files. Process the files in Amazon EMR. Load the files into the Amazon Redshift tables.
+Ans: B
+
+
+
+
+
+
+
