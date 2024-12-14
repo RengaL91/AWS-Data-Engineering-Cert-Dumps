@@ -968,15 +968,141 @@ C) Use the Amazon AppFlow SDK to build a custom connector for the MySQL database
 D) Run scheduled AWS DataSync tasks to synchronize data from the MySQL database. Set Amazon Redshift as the destination for the tasks.
 Ans: B
 
+111. A marketing company uses Amazon S3 to store clickstream data. The company queries the data at the end of each day by using a SQL JOIN clause on S3 objects that are stored in separate buckets.
+The company creates key performance indicators (KPIs) based on the objects. The company needs a serverless solution that will give users the ability to query data by partitioning the data. The solution must maintain the atomicity, consistency, isolation, and durability (ACID) properties of the data.
+Which solution will meet these requirements MOST cost-effectively?
+A) Amazon S3 Select
+B) Amazon Redshift Spectrum
+C) Amazon Athena 
+D) Amazon EMR
+Ans: C
 
+112. A company wants to migrate data from an Amazon RDS for PostgreSQL DB instance in the eu-east-1 Region of an AWS account named Account_A. The company will migrate the data to an Amazon Redshift cluster in the eu-west-1 Region of an AWS account named Account_B.
+Which solution will give AWS Database Migration Service (AWS DMS) the ability to replicate data between two data stores?
+A) Set up an AWS DMS replication instance in Account_B in eu-west-1.
+B) Set up an AWS DMS replication instance in Account_B in eu-east-1.
+C) Set up an AWS DMS replication instance in a new AWS account in eu-west-1.
+D) Set up an AWS DMS replication instance in Account_A in eu-east-1.
+Ans: A
 
+113. A company uses Amazon S3 as a data lake. The company sets up a data warehouse by using a multi-node Amazon Redshift cluster. The company organizes the data files in the data lake based on the data source of each data file.
+The company loads all the data files into one table in the Redshift cluster by using a separate COPY command for each data file location. This approach takes a long time to load all the data files into the table. The company must increase the speed of the data ingestion. The company does not want to increase the cost of the process.
+Which solution will meet these requirements?
+A) Use a provisioned Amazon EMR cluster to copy all the data files into one folder. Use a COPY command to load the data into Amazon Redshift.
+B) Load all the data files in parallel into Amazon Aurora. Run an AWS Glue job to load the data into Amazon Redshift.
+C) Use an AWS Give job to copy all the data files into one folder. Use a COPY command to load the data into Amazon Redshift.
+D) Create a manifest file that contains the data file locations. Use a COPY command to load the data into Amazon Redshift.
+Ans: D
 
+114. A company plans to use Amazon Kinesis Data Firehose to store data in Amazon S3. The source data consists of 2 MB .csv files. The company must convert the .csv files to JSON format. The company must store the files in Apache Parquet format.
+Which solution will meet these requirements with the LEAST development effort?
+A) Use Kinesis Data Firehose to convert the .csv files to JSON. Use an AWS Lambda function to store the files in Parquet format.
+B) Use Kinesis Data Firehose to convert the .csv files to JSON and to store the files in Parquet format. 
+C) Use Kinesis Data Firehose to invoke an AWS Lambda function that transforms the .csv files to JSON and stores the files in Parquet format.
+D) Use Kinesis Data Firehose to invoke an AWS Lambda function that transforms the .csv files to JSON. Use Kinesis Data Firehose to store the files in Parquet format.
+Ans: B
 
+115. A company is using an AWS Transfer Family server to migrate data from an on- premises environment to AWS. Company policy mandates the use of TLS 1.2 or above to encrypt the data in transit.
+Which solution will meet these requirements?
+A) Generate new SSH keys for the Transfer Family server. Make the old keys and the new keys available for use.
+B) Update the security group rules for the on-premises network to allow only connections that use TLS 1.2 or above.
+C) Update the security policy of the Transfer Family server to specify a minimum protocol version of TLS 1.2.
+D) Install an SSL certificate on the Transfer Family server to encrypt data transfers by using TLS 1.2.
+Ans: C
 
+116. A company wants to migrate an application and an on-premises Apache Kafka server to AWS. The application processes incremental updates that an on- premises Oracle database sends to the Kafka server. The company wants to use the replatform migration strategy instead of the refactor strategy.
+Which solution will meet these requirements with the LEAST management overhead?
+A) Amazon Kinesis Data Streams
+B) Amazon Managed Streaming for Apache Kafka (Amazon MSK) provisioned cluster 
+C) Amazon Kinesis Data Firehose
+D) Amazon Managed Streaming for Apache Kafka (Amazon MSK) Serverless
+Ans: D
 
+117. A data engineer is building an automated extract, transform, and load (ETL) ingestion pipeline by using AWS Glue. The pipeline ingests compressed files that are in an Amazon S3 bucket. The ingestion pipeline must support incremental data processing.
+Which AWS Glue feature should the data engineer use to meet this requirement?
+A) Workflows
+B) Triggers
+C) Job bookmarks 
+D) Classifiers
+Ans: C
 
+118. A banking company uses an application to collect large volumes of transactional data. The company uses Amazon Kinesis Data Streams for real- time analytics. The company’s application uses the PutRecord action to send data to Kinesis Data Streams.
+A data engineer has observed network outages during certain times of day. The data engineer wants to configure exactly-once delivery for the entire processing pipeline.
+Which solution will meet this requirement?
+A) Design the application so it can remove duplicates during processing by embedding a unique ID in each record at the source.
+B) Update the checkpoint configuration of the Amazon Managed Service for Apache Flink (previously known as Amazon Kinesis Data Analytics) data collection application to avoid duplicate processing of events. 
+C) Design the data source so events are not ingested into Kinesis Data Streams multiple times. 
+D) Stop using Kinesis Data Streams. Use Amazon EMR instead. Use Apache Flink and Apache Spark Streaming in Amazon EMR.
+Ans: B
 
+119. A company stores logs in an Amazon S3 bucket. When a data engineer attempts to access several log files, the data engineer discovers that some files have been unintentionally deleted.
+The data engineer needs a solution that will prevent unintentional file deletion in the future.
+Which solution will meet this requirement with the LEAST operational overhead?
+A) Manually back up the S3 bucket on a regular basis.
+B) Enable S3 Versioning for the S3 bucket. 
+C) Configure replication for the S3 bucket.
+D) Use an Amazon S3 Glacier storage class to archive the data that is in the S3 bucket.
+Ans: B
 
+120. A telecommunications company collects network usage data throughout each day at a rate of several thousand data points each second. The company runs an application to process the usage data in real time. The company aggregates and stores the data in an Amazon Aurora DB instance.
+Sudden drops in network usage usually indicate a network outage. The company must be able to identify sudden drops in network usage so the company can take immediate remedial actions.
+Which solution will meet this requirement with the LEAST latency?
+A) Create an AWS Lambda function to query Aurora for drops in network usage. Use Amazon EventBridge to automatically invoke the Lambda function every minute.
+B) Modify the processing application to publish the data to an Amazon Kinesis data stream. Create an Amazon Managed Service for Apache Flink (previously known as Amazon Kinesis Data Analytics) application to detect drops in network usage. 
+C) Replace the Aurora database with an Amazon DynamoDB table. Create an AWS Lambda function to query the DynamoDB table for drops in network usage every minute. Use DynamoDB Accelerator (DAX) between the processing application and DynamoDB table.
+D) Create an AWS Lambda function within the Database Activity Streams feature of Aurora to detect drops in network usage.
+Ans: B
 
+121. A data engineer is processing and analyzing multiple terabytes of raw data that is in Amazon S3. The data engineer needs to clean and prepare the data. Then the data engineer needs to load the data into Amazon Redshift for analytics.
+The data engineer needs a solution that will give data analysts the ability to perform complex queries. The solution must eliminate the need to perform complex extract, transform, and load (ETL) processes or to manage infrastructure.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Use Amazon EMR to prepare the data. Use AWS Step Functions to load the data into Amazon Redshift. Use Amazon QuickSight to run queries.
+B) Use AWS Glue DataBrew to prepare the data. Use AWS Glue to load the data into Amazon Redshift. Use Amazon Redshift to run queries.
+C) Use AWS Lambda to prepare the data. Use Amazon Kinesis Data Firehose to load the data into Amazon Redshift. Use Amazon Athena to run queries.
+D) Use AWS Glue to prepare the data. Use AWS Database Migration Service (AVVS DMS) to load the data into Amazon Redshift. Use Amazon Redshift Spectrum to run queries.
+Ans: B
 
+122. A company uses an AWS Lambda function to transfer files from a legacy SFTP environment to Amazon S3 buckets. The Lambda function is VPC enabled to ensure that all communications between the Lambda function and other AVS services that are in the same VPC environment will occur over a secure network.
+The Lambda function is able to connect to the SFTP environment successfully. However, when the Lambda function attempts to upload files to the S3 buckets, the Lambda function returns timeout errors. A data engineer must resolve the timeout issues in a secure way.
+Which solution will meet these requirements in the MOST cost-effective way?
+A) Create a NAT gateway in the public subnet of the VPC. Route network traffic to the NAT gateway.
+B) Create a VPC gateway endpoint for Amazon S3. Route network traffic to the VPC gateway endpoint.
+C) Create a VPC interface endpoint for Amazon S3. Route network traffic to the VPC interface endpoint.
+D) Use a VPC internet gateway to connect to the internet. Route network traffic to the VPC internet gateway.
+Ans: B
 
+123. A company reads data from customer databases that run on Amazon RDS. The databases contain many inconsistent fields. For example, a customer record field that iPnamed place_id in one database is named location_id in another database. The company needs to link customer records across different databases, even when customer record fields do not match.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Create a provisioned Amazon EMR cluster to process and analyze data in the databases. Connect to the Apache Zeppelin notebook. Use the FindMatches transform to find duplicate records in the data.
+B) Create an AWS Glue crawler to craw the databases. Use the FindMatches transform to find duplicate records in the data. Evaluate and tune the transform by evaluating the performance and results. 
+C) Create an AWS Glue crawler to craw the databases. Use Amazon SageMaker to construct Apache Spark ML pipelines to find duplicate records in the data.
+D) Create a provisioned Amazon EMR cluster to process and analyze data in the databases. Connect to the Apache Zeppelin notebook. Use an Apache Spark ML model to find duplicate records in the data. Evaluate and tune the model by evaluating the performance and results.
+Ans: B
+
+124. A finance company receives data from third-party data providers and stores the data as objects in an Amazon S3 bucket.
+The company ran an AWS Glue crawler on the objects to create a data catalog. The AWS Glue crawler created multiple tables. However, the company expected that the crawler would create only one table.
+The company needs a solution that will ensure the AVS Glue crawler creates only one table.
+Which combination of solutions will meet this requirement? (Choose two.)
+A) Ensure that the object format, compression type, and schema are the same for each object. 
+B) Ensure that the object format and schema are the same for each object. Do not enforce consistency for the compression type of each object.
+C) Ensure that the schema is the same for each object. Do not enforce consistency for the file format and compression type of each object.
+D) Ensure that the structure of the prefix for each S3 object name is consistent. 
+E) Ensure that all S3 object names follow a similar pattern.
+Ans: A, D
+
+125. An application consumes messages from an Amazon Simple Queue Service (Amazon SQS) queue. The application experiences occasional downtime. As a result of the downtime, messages within the queue expire and are deleted after 1 day. The message deletions cause data loss for the application.
+Which solutions will minimize data loss for the application? (Choose two.)
+A) Increase the message retention period.
+B) Increase the visibility timeout.
+C) Attach a dead-letter queue (DLQ) to the SQS queue. 
+D) Use a delay queue to delay message delivery 
+E) Reduce message processing time.
+Ans: A, C
+
+126. A company is creating near real-time dashboards to visualize time series data. The company ingests data into Amazon Managed Streaming for Apache Kafka (Amazon MSK). A customized data pipeline consumes the data. The pipeline then writes data to Amazon Keyspaces (for Apache Cassandra), Amazon OpenSearch Service, and Apache Avro objects in Amazon S3.
+Which solution will make the data available for the data visualizations with the LEAST latency?
+A) Create OpenSearch Dashboards by using the data from OpenSearch Service. 
+B) Use Amazon Athena with an Apache Hive metastore to query the Avro objects in Amazon S3. Use Amazon Managed Grafana to connect to Athena and to create the dashboards.
+C) Use Amazon Athena to query the data from the Avro objects in Amazon S3. Configure Amazon Keyspaces as the data catalog. Connect Amazon QuickSight to Athena to create the dashboards. 
+D) Use AWS Glue to catalog the data. Use S3 Select to query the Avro objects in Amazon S3. Connect Amazon QuickSight to the S3 bucket to create the dashboards.
+Ans: A
