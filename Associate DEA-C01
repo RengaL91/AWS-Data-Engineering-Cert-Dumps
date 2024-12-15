@@ -1416,4 +1416,195 @@ C) Use Amazon DynamoDB Streams to capture table changes. Use an AWS Lambda funct
 D) Use a custom OpenSearch plugin to sync data from the Amazon DynamoDB tables.
 Ans: C
 
+161. A company uses Amazon Redshift as its data warehouse service. A data engineer needs to design a physical data model.
+The data engineer encounters a de-normalized table that is growing in size. The table does not have a suitable column to use as the distribution key.
+Which distribution style should the data engineer use to meet these requirements with the LEAST maintenance overhead?
+A) ALL distribution
+B) EVEN distribution
+C) AUTO distribution 
+D) KEY distribution
+Ans: C
+
+162. A retail company is expanding its operations globally. The company needs to use Amazon QuickSight to accurately calculate currency exchange rates for financial reports. The company has an existing dashboard that includes a visual that is based on an analysis of a dataset that contains global currency values and exchange rates.
+A data engineer needs to ensure that exchange rates are calculated with a precision of four decimal places. The calculations must be precomputed. The data engineer must materialize results in QuickSight super-fast, parallel, in- memory calculation engine (SPICE).
+Which solution will meet these requirements?
+A) Define and create the calculated field in the dataset. 
+B) Define and create the calculated field in the analysis.
+C) Define and create the calculated field in the visual.
+D) Define and create the calculated field in the dashboard.
+Ans: A
+
+163. A company has three subsidiaries. Each subsidiary uses a different data warehousing solution. The first subsidiary hosts its data warehouse in Amazon Redshift. The second subsidiary uses Teradata Vantage on AWS. The third subsidiary uses Google BigQuery.
+The company wants to aggregate all the data into a central Amazon S3 data lake. The company wants to use Apache Iceberg as the table format.
+A data engineer needs to build a new pipeline to connect to all the data sources, run transformations by using each source engine, join the data, and write the data to Iceberg.
+Which solution will meet these requirements with the LEAST operational effort?
+A) Use native Amazon Redshift, Teradata, and BigQuery connectors to build the pipeline in AWS Glue. Use native AWS Glue transforms to join the data. Run a Merge operation on the data lake Iceberg table.
+B) Use the Amazon Athena federated query connectors for Amazon Redshift, Teradata, and BigQuery to build the pipeline in Athena. Write a SQL query to read from all the data sources, join the data, and run a Merge operation on the data lake Iceberg table. 
+C) Use the native Amazon Redshift connector, the Java Database Connectivity (JDBC) connector for Teradata, and the open source Apache Spark BigQuery connector to build the pipeline in Amazon EMR. Write code in PySpark to join the data. Run a Merge operation on the data lake Iceberg table.
+D) Use the native Amazon Redshift, Teradata, and BigQuery connectors in Amazon Appflow to write data to Amazon S3 and AWS Glue Data Catalog. Use Amazon Athena to join the data. Run a Merge operation on the data lake Iceberg table.
+Ans: B
+
+164. A company is building a data stream processing application. The application runs in an Amazon Elastic Kubernetes Service (Amazon EKS) cluster. The application stores processed data in an Amazon DynamoDB table.
+The company needs the application containers in the EKS cluster to have secure access to the DynamoDB table. The company does not want to embed AWS credentials in the containers.
+Which solution will meet these requirements?
+A) Store the AWS credentials in an Amazon S3 bucket. Grant the EKS containers access to the S3 bucket to retrieve the credentials.
+B) Attach an IAM role to the EKS worker nodes, Grant the IAM role access to DynamoDUse the IAM role to set up IAM roles service accounts (IRSA) functionality.
+C) Create an IAM user that has an access key to access the DynamoDB table. Use environment variables in the EKS containers to store the IAM user access key data.
+D) Create an IAM user that has an access key to access the DynamoDB table. Use Kubernetes secrets that are mounted in a volume of the EKS duster nodes to store the user access key data.
+Ans: B
+
+165. A data engineer needs to onboard a new data producer into AWS. The data producer needs to migrate data products to AWS.
+The data producer maintains many data pipelines that support a business application. Each pipeline must have service accounts and their corresponding credentials. The data engineer must establish a secure connection from the data producer's on-premises data center to AWS. The data engineer must not use the public internet to transfer data from an on-premises data center to AWS.
+Which solution will meet these requirements?
+A) Instruct the new data producer to create Amazon Machine Images (AMIs) on Amazon Elastic Container Service (Amazon ECS) to store the code base of the application. Create security groups in a public subnet that allow connections only to the on-premises data center.
+B) Create an AWS Direct Connect connection to the on-premises data center. Store the service account credentials in AWS Secrets manager.
+C) Create a security group in a public subnet. Configure the security group to allow only connections from the CIDR blocks that correspond to the data producer. Create Amazon S3 buckets than contain presigned URLS that have one-day expiration dates.
+D) Create an AWS Direct Connect connection to the on-premises data center. Store the application keys in AWS Secrets Manager. Create Amazon S3 buckets that contain presigned URLS that have one-day expiration dates.
+Ans: B
+
+166. A data engineer configured an AWS Glue Data Catalog for data that is stored in Amazon S3 buckets. The data engineer needs to configure the Data Catalog to receive incremental updates.
+The data engineer sets up event notifications for the S3 bucket and creates an Amazon Simple Queue Service (Amazon SQS) queue to receive the S3 events.
+Which combination of steps should the data engineer take to meet these requirements with LEAST operational overhead? (Choose two.)
+A) Create an S3 event-based AWS Glue crawler to consume events from the SQS queue. 
+B) Define a time-based schedule to run the AWS Glue crawler, and perform incremental updates to the Data Catalog.
+C) Use an AWS Lambda function to directly update the Data Catalog based on S3 events that the SQS queue receives.
+D) Manually initiate the AWS Glue crawler to perform updates to the Data Catalog when there is a change in the S3 bucket.
+E) Use AWS Step Functions to orchestrate the process of updating the Data Catalog based on S3 events that the SQS queue receives.
+Ans: A, C
+
+167. A company uses AWS Glue Data Catalog to index data that is uploaded to an Amazon S3 bucket every day. The company uses a daily batch processes in an extract, transform, and load (ETL) pipeline to upload data from external sources into the S3 bucket.
+The company runs a daily report on the S3 data. Some days, the company runs the report before all the daily data has been uploaded to the S3 bucket. A data engineer must be able to send a message that identifies any incomplete data to an existing Amazon Simple Notification Service (Amazon SNS) topic.
+Which solution will meet this requirement with the LEAST operational overhead?
+A) Create data quality checks for the source datasets that the daily reports use. Create a new AWS managed Apache Airflow cluster. Run the data quality checks by using Airflow tasks that run data quality queries on the columns data type and the presence of null values. Configure Airflow Directed Acyclic Graphs (DAGs) to send an email notification that informs the data engineer about the incomplete datasets to the SNS topic.
+B) Create data quality checks on the source datasets that the daily reports use. Create a new Amazon EMR cluster. Use Apache Spark SQL to create Apache Spark jobs in the EMR cluster that run data quality queries on the columns data type and the presence of null values. Orchestrate the ETL pipeline by using an AWS Step Functions workflow. Configure the workflow to send an email notification that informs the data engineer about the incomplete datasets to the SNS topic.
+C) Create data quality checks on the source datasets that the daily reports use. Create data quality actions by using AWS Glue workflows to confirm the completeness and consistency of the datasets. Configure the data quality actions to create an event in Amazon EventBridge if a dataset is incomplete. Configure EventBridge to send the event that informs the data engineer about the incomplete datasets to the Amazon SNS topic. 
+D) Create AWS Lambda functions that run data quality queries on the columns data type and the presence of null values. Orchestrate the ETL pipeline by using an AWS Step Functions workflow that runs the Lambda functions. Configure the Step Functions workflow to send an email notification that informs the data engineer about the incomplete datasets to the SNS topic.
+Ans: C
+
+168. A company stores customer data that contains personally identifiable information (PII) in an Amazon Redshift cluster. The company's marketing, claims, and analytics teams need to be able to access the customer data.
+The marketing team should have access to obfuscated claim information but should have full access to customer contact information. The claims team should have access to customer information for each claim that the team processes. The analytics team should have access only to obfuscated PII data.
+Which solution will enforce these data access requirements with the LEAST administrative overhead?
+A) Create a separate Redshift cluster for each team. Load only the required data for each team. Restrict access to clusters based on the teams.
+B) Create views that include required fields for each of the data requirements. Grant the teams access only to the view that each team requires. 
+C) Create a separate Amazon Redshift database role for each team. Define masking policies that apply for each team separately. Attach appropriate masking policies to each team role.
+D) Move the customer data to an Amazon S3 bucket. Use AWS Lake Formation to create a data lake. Use fine-grained security capabilities to grant each team appropriate permissions to access the data.
+Ans: B
+
+169. A financial company recently added more features to its mobile app. The new features required the company to create a new topic in an existing Amazon Managed Streaming for Apache Kafka (Amazon MSK) cluster.
+A few days after the company added the new topic, Amazon CloudWatch raised an alarm on the RootDiskUsed metric for the MSK cluster.
+How should the company address the CloudWatch alarm?
+A) Expand the storage of the MSK broker. Configure the MSK cluster storage to expand automatically. 
+B) Expand the storage of the Apache ZooKeeper nodes.
+C) Update the MSK broker instance to a larger instance type. Restart the MSK cluster.
+D) Specify the Target Volume-in-GiB parameter for the existing topic.
+Ans: A
+
+170. A data engineer needs to build an enterprise data catalog based on the company's Amazon S3 buckets and Amazon RDS databases. The data catalog must include storage format metadata for the data in the catalog.
+Which solution will meet these requirements with the LEAST effort?
+A) Use an AWS Glue crawler to scan the S3 buckets and RDS databases and build a data catalog. Use data stewards to inspect the data and update the data catalog with the data format.
+B) Use an AWS Glue crawler to build a data catalog. Use AWS Glue crawler classifiers to recognize the format of data and store the format in the catalog. 
+C) Use Amazon Macie to build a data catalog and to identify sensitive data elements. Collect the data format information from Macie.
+D) Use scripts to scan data elements and to assign data classifications based on the format of
+the data.
+Ans: B
+
+171. A company analyzes data in a data lake every quarter to perform inventory assessments. A data engineer uses AWS Glue DataBrew to detect any personally identifiable formation (PII) about customers within the data. The company's privacy policy considers some custom categories of information to be PII. However, the categories are not included in standard DataBrew data quality rules.
+The data engineer needs to modify the current process to scan for the custom PII categories across multiple datasets within the data lake.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Manually review the data for custom PII categories.
+B) Implement custom data quality rules in DataBrew. Apply the custom rules across datasets. 
+C) Develop custom Python scripts to detect the custom PII categories. Call the scripts from DataBrew.
+D) Implement regex patterns to extract PII information from fields during extract transform, and load (ETL) operations into the data lake.
+Ans: B
+
+172. A company receives a data file from a partner each day in an Amazon S3 bucket. The company uses a daily AWS Glue extract, transform, and load (ETL) pipeline to clean and transform each data file. The output of the ETL pipeline is written to a CSV file named Daily.csv in a second S3 bucket.
+Occasionally, the daily data file is empty or is missing values for required fields. When the file is missing data, the company can use the previous day’s CSV file.
+A data engineer needs to ensure that the previous day's data file is overwritten only if the new daily file is complete and valid.
+Which solution will meet these requirements with the LEAST effort?
+A) Invoke an AWS Lambda function to check the file for missing data and to fill in missing values in required fields.
+B) Configure the AWS Glue ETL pipeline to use AWS Glue Data Quality rules. Develop rules in Data Quality Definition Language (DQDL) to check for missing values in required fields and empty files. 
+C) Use AWS Glue Studio to change the code in the ETL pipeline to fill in any missing values in the required fields with the most common values for each field.
+D) Run a SQL query in Amazon Athena to read the CSV file and drop missing rows. Copy the corrected CSV file to the second S3 bucket.
+Ans: B
+
+173. A marketing company uses Amazon S3 to store marketing data. The company uses versioning in some buckets. The company runs several jobs to read and load data into the buckets.
+To help cost-optimize its storage, the company wants to gather information about incomplete multipart uploads and outdated versions that are present in the S3 buckets.
+Which solution will meet these requirements with the LEAST operational effort?
+A) Use AWS CLI to gather the information.
+B) Use Amazon S3 Inventory configurations reports to gather the information.
+C) Use the Amazon S3 Storage Lens dashboard to gather the information. 
+D) Use AWS usage reports for Amazon S3 to gather the information.
+Ans: C
+
+174. A gaming company uses Amazon Kinesis Data Streams to collect clickstream data. The company uses Amazon Data Firehose delivery streams to store the data in JSON format in Amazon S3. Data scientists at the company use Amazon Athena to query the most recent data to obtain business insights.
+The company wants to reduce Athena costs but does not want to recreate the data pipeline.
+Which solution will meet these requirements with the LEAST management effort?
+A) Change the Firehose output format to Apache Parquet. Provide a custom S3 object YYYYMMDD prefix expression and specify a large buffer size. For the existing data, create an AWS Glue extract, transform, and load (ETL) job. Configure the ETL job to combine small JSON files, convert the JSON files to large Parquet files, and add the YYYYMMDD prefix. Use the ALTER TABLE ADD PARTITION statement to reflect the partition on the existing Athena table. 
+B) Create an Apache Spark job that combines JSON files and converts the JSON files to Apache Parquet files. Launch an Amazon EMR ephemeral cluster every day to run the Spark job to create new Parquet files in a different S3 location. Use the ALTER TABLE SET LOCATION statement to reflect the new S3 location on the existing Athena table.
+C) Create a Kinesis data stream as a delivery destination for Firehose. Use Amazon Managed Service for Apache Flink (previously known as Amazon Kinesis Data Analytics) to run Apache Flink on the Kinesis data stream. Use Flink to aggregate the data and save the data to Amazon S3 in Apache Parquet format with a custom S3 object YYYYMMDD prefix. Use the ALTER TABLE ADD PARTITION statement to reflect the partition on the existing Athena table.
+D) Integrate an AWS Lambda function with Firehose to convert source records to Apache Parquet and write them to Amazon S3. In parallel, run an AWS Glue extract, transform, and load (ETL) job to combine the JSON files and convert the JSON files to large Parquet files. Create a custom S3 object YYYYMMDD prefix. Use the ALTER TABLE ADD PARTITION statement to reflect the partition on the existing Athena table.
+Ans: A
+
+175. A company needs a solution to manage costs for an existing Amazon DynamoDB table. The company also needs to control the size of the table. The solution must not disrupt any ongoing read or write operations. The company wants to use a solution that automatically deletes data from the table after 1 month.
+Which solution will meet these requirements with the LEAST ongoing maintenance?
+A) Use the DynamoDB TTL feature to automatically expire data based on timestamps. 
+B) Configure a scheduled Amazon EventBridge rule to invoke an AWS Lambda function to check for data that is older than 1 month. Configure the Lambda function to delete old data.
+C) Configure a stream on the DynamoDB table to invoke an AWS Lambda function. Configure the Lambda function to delete data in the table that is older than 1 month.
+D) Use an AWS Lambda function to periodically scan the DynamoDB table for data that is older than 1 month. Configure the Lambda function to delete old data.
+Ans: A
+
+176. A company uses Amazon S3 to store data and Amazon QuickSight to create visualizations,
+The company has an S3 bucket in an AWS account named Hub-Account. The S3 bucket is encrypted by an AWS Key Management Service (AWS KMS) key. The company's QuickSight instance is in a separate account named BI-Account.
+The company updates the S3 bucket policy to grant access to the QuickSight service role. The company wants to enable cross-account access to allow QuickSight to interact with the S3 bucket.
+Which combination of steps will meet this requirement? (Choose two.)
+A) Use the existing AWS KMS key to encrypt connections from QuickSight to the S3 bucket. 
+B) Add the S3 bucket as a resource that the QuickSight service role can access.
+C) Use AWS Resource Access Manager (AWS RAM) to share the S3 bucket with the BI-Account account.
+D) Add an IAM policy to the QuickSight service role to give QuickSight access to the KMS key that encrypts the S3 bucket. 
+E) Add the KMS key as a resource that the QuickSight service role can access.
+Ans: D, E
+
+177. A car sales company maintains data about cars that are listed for sale in an area. The company receives data about new car listings from vendors who upload the data daily as compressed files into Amazon S3. The compressed files are up to 5 KB in size. The company wants to see the most up-to-date listings as soon as the data is uploaded to Amazon S3.
+A data engineer must automate and orchestrate the data processing workflow of the listings to feed a dashboard. The data engineer must also provide the ability to perform one-time queries and analytical reporting. The query solution must be scalable.
+Which solution will meet these requirements MOST cost-effectively?
+A) Use an Amazon EMR cluster to process incoming data. Use AWS Step Functions to orchestrate workflows. Use Apache Hive for one-time queries and analytical reporting. Use Amazon OpenSearch Service to bulk ingest the data into compute optimized instances. Use OpenSearch Dashboards in OpenSearch Service for the dashboard.
+B) Use a provisioned Amazon EMR cluster to process incoming data. Use AWS Step Functions to orchestrate workflows. Use Amazon Athena for one-time queries and analytical reporting. Use Amazon QuickSight for the dashboard.
+C) Use AWS Glue to process incoming data. Use AWS Step Functions to orchestrate workflows. Use Amazon Redshift Spectrum for one-time queries and analytical reporting. Use OpenSearch Dashboards in Amazon OpenSearch Service for the dashboard.
+D) Use AWS Glue to process incoming data. Use AWS Lambda and S3 Event Notifications to orchestrate workflows. Use Amazon Athena for one-time queries and analytical reporting. Use Amazon QuickSight for the dashboard. 
+Ans: D
+
+178. A company has AWS resources in multiple AWS Regions. The company has an Amazon EFS file system in each Region where the company operates. The company’s data science team operates within only a single Region. The data that the data science team works with must remain within the team's Region.
+A data engineer needs to create a single dataset by processing files that are in each of the company's Regional EFS file systems. The data engineer wants to use an AWS Step Functions state machine to orchestrate AWS Lambda functions to process the data.
+Which solution will meet these requirements with the LEAST effort?
+A) Peer the VPCs that host the EFS file systems in each Region with the VPC that is in the data science team’s Region. Enable EFS file locking. Configure the Lambda functions in the data science team's Region to mount each of the Region specific file systems. Use the Lambda functions to process the data.
+B) Configure each of the Regional EFS file systems to replicate data to the data science team's Region. In the data science team’s Region, configure the Lambda functions to mount the replica file systems. Use the Lambda functions to process the data.
+C) Deploy the Lambda functions to each Region. Mount the Regional EFS file systems to the Lambda functions. Use the Lambda functions to process the data. Store the output in an Amazon S3 bucket in the data science team’s Region.
+D) Use AWS DataSync to transfer files from each of the Regional EFS files systems to the file system that is in the data science team's Region. Configure the Lambda functions in the data science team's Region to mount the file system that is in the same Region. Use the Lambda functions to process the data. 
+Ans: D
+
+179. A company hosts its applications on Amazon EC2 instances. The company must use SSL/TLS connections that encrypt data in transit to communicate securely with AWS infrastructure that is managed by a customer.
+A data engineer needs to implement a solution to simplify the generation, distribution, and rotation of digital certificates. The solution must automatically renew and deploy SSL/TLS certificates.
+Which solution will meet these requirements with the LEAST operational overhead?
+A) Store self-managed certificates on the EC2 instances.
+B) Use AWS Certificate Manager (ACM). 
+C) Implement custom automation scripts in AWS Secrets Manager.
+D) Use Amazon Elastic Container Service (Amazon ECS) Service Connect.
+Ans: B
+
+180. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
